@@ -1,13 +1,17 @@
-// require('dotenv').config({path: './env'})  // this also valid code
-import dotenv from "dotenv";
+// require('dotenv').config()  // this also valid code
+import 'dotenv/config'
+
+// facing problem this way, when adding config below
+// import dotenv from "dotenv"; 
+
+// when using ES module (not commonjs), and face loading problem
+//to use ES module import add this in script "-r dotenv/config --experimental-json-modules"
+// dotenv.config({
+//   path: "./.env",
+// });
+
 import connectDB from "./db/db.js";
 import { app } from "./app.js";
-
-// when using ES module (not commonjs),
-//to use ES module import add this in script "-r dotenv/config --experimental-json-modules"
-dotenv.config({
-  path: "./.env",
-});
 
 // after db  connect server start listening
 connectDB()
