@@ -60,7 +60,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// adding methods to schema
+// methods to a schema, and these methods become available on the instances of the model (documents) that you retrieve from the MongoDB database.
 userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
