@@ -24,4 +24,19 @@ import userRouter from "./routes/user.routes.js";
 // routes
 app.use("/api/v1/users", userRouter);
 
+//page not found
+app.use("*", (req, res) => {
+  res.status(404).send("Page Not Found");
+});
+
+// catch all error, either thrown by ApiError or other error
+app.use((error, req, res, next) => {
+  console.log("///////////////Error: \n", error);  
+  res.status(error.statusCode || 500).json({
+    success: false,
+    message: error.message || "Something went wrong",
+  });
+  next()
+});
+
 export { app };
